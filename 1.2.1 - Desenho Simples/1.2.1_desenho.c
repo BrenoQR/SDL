@@ -15,36 +15,12 @@ int main (int argc, char* args[])
     SDL_SetRenderDrawColor(ren, 0x00,0x00,0x00,0x00);
     SDL_RenderClear(ren);
     SDL_SetRenderDrawColor(ren, 0xFF,0xFF,0x00,0x00);
-    SDL_Rect r1 = {40, 20, 5, 5};
-    SDL_RenderFillRect(ren, &r1);
-    SDL_Rect r2 = {200, 500, 5, 5};
-    SDL_RenderFillRect(ren, &r2);
-    SDL_Rect r3 = {300, 100, 5, 5};
-    SDL_RenderFillRect(ren, &r3);
-    SDL_Rect r4 = {800, 400, 5, 5};
-    SDL_RenderFillRect(ren, &r4);
-    SDL_Rect r5 = {900, 50, 5, 5};
-    SDL_RenderFillRect(ren, &r5);
-    SDL_Rect r6 = {600, 300, 5, 5};
-    SDL_RenderFillRect(ren, &r6);
-    SDL_Rect r7 = {750, 200, 5, 5};
-    SDL_RenderFillRect(ren, &r7);
-    SDL_Rect r8 = {500, 150, 5, 5};
-    SDL_RenderFillRect(ren, &r8);
-    SDL_Rect r9 = {400, 400, 5, 5};
-    SDL_RenderFillRect(ren, &r9);
-    SDL_Rect r10 = {150, 250, 5, 5};
-    SDL_RenderFillRect(ren, &r10);
-    SDL_Rect r11 = {350, 350, 5, 5};
-    SDL_RenderFillRect(ren, &r11);
-    SDL_Rect r12 = {250, 450, 5, 5};
-    SDL_RenderFillRect(ren, &r12);
-    SDL_Rect r13 = {450, 50, 5, 5};
-    SDL_RenderFillRect(ren, &r13);
-    SDL_Rect r14 = {700, 500, 5, 5};
-    SDL_RenderFillRect(ren, &r14);
-    SDL_Rect r15 = {850, 300, 5, 5};
-    SDL_RenderFillRect(ren, &r15);
+    for (int i = 0; i < 80; i++) {
+        int x = rand() % 1000;
+        int y = rand() % 600;
+        SDL_Rect r = {x, y, 5, 5};
+        SDL_RenderFillRect(ren, &r);
+    }
     SDL_RenderPresent(ren);
     SDL_Delay(5000);
 

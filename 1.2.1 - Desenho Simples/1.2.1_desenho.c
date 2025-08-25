@@ -4,10 +4,10 @@ int main (int argc, char* args[])
 {
     /* INICIALIZACAO */
     SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window* win = SDL_CreateWindow("Hello World!",
+    SDL_Window* win = SDL_CreateWindow("Desenho Simples",
                          SDL_WINDOWPOS_UNDEFINED,
                          SDL_WINDOWPOS_UNDEFINED,
-                         200, 100, SDL_WINDOW_SHOWN
+                         1000, 600, SDL_WINDOW_SHOWN
                       );
     SDL_Renderer* ren = SDL_CreateRenderer(win, -1, 0);
 

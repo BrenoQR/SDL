@@ -26,6 +26,8 @@ int main (int argc, char* args[])
     ColoredRect rects[10];
     int rect_count = 0;
 
+    int timer = 250;
+
     while (1) {
         SDL_SetRenderDrawColor(ren, 0, 0, 0,0);
         SDL_RenderClear(ren);
@@ -47,41 +49,54 @@ int main (int argc, char* args[])
         SDL_RenderFillRect(ren, &r3);
 
         SDL_RenderPresent(ren);
-
-        SDL_WaitEvent(&evt);
-        if (evt.type == SDL_WINDOWEVENT){
-            if (evt.window.event == SDL_WINDOWEVENT_CLOSE) {
-                break;
+        
+        Uint32 antes = SDL_GetTicks();
+        int isevt = SDL_WaitEventTimeout(&evt, timer);
+        if (isevt){
+            timer -= (SDL_GetTicks() - antes);
+            if (evt.type == SDL_WINDOWEVENT){
+                if (evt.window.event == SDL_WINDOWEVENT_CLOSE) {
+                    break;
+                }
             }
-        }
-
-        if (evt.type == SDL_KEYDOWN) {
-            switch (evt.key.keysym.sym) {
-                case SDLK_UP:
-                    r2.y -= 5;
-                    if (r2.y == 0){
-                        r2.y += 5;                        
-                    }
-                    break;
-                case SDLK_DOWN:
-                    r2.y += 5;
-                    if (r2.y == 480){
-                        r2.y -= 5;                        
-                    }
-                    break;
-                case SDLK_LEFT:
-                    r2.x -= 5;
-                    if (r2.x == 0){
-                        r2.x += 5;                        
-                    }
-                    break;
-                case SDLK_RIGHT:
-                    r2.x += 5;
-                    if (r2.x == 480){
-                        r2.x -= 5;                        
-                    }
-                    break;
+            if (evt.type == SDL_KEYDOWN) {
+                switch (evt.key.keysym.sym) {
+                    case SDLK_UP:
+                        r2.y -= 5;
+                        if (r2.y == 0){
+                            r2.y += 5;                        
+                        }
+                        break;
+                    case SDLK_DOWN:
+                        r2.y += 5;
+                        if (r2.y == 480){
+                            r2.y -= 5;                        
+                        }
+                        break;
+                    case SDLK_LEFT:
+                        r2.x -= 5;
+                        if (r2.x == 0){
+                            r2.x += 5;                        
+                        }
+                        break;
+                    case SDLK_RIGHT:
+                        r2.x += 5;
+                        if (r2.x == 480){
+                            r2.x -= 5;                        
+                        }
+                        break;
+                }
             }
+            if (evt.type == SDL_MOUSEMOTION){
+                int mousex = 1;
+                int mousey = 1;
+                SDL_GetMouseState(&mousex, &mousey);
+                r3.x = mousex;
+                r3.y = mousey;
+            }
+        } else{
+            timer = 500;
+            r1.x += 5;
         }
         
     }

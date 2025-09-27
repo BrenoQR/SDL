@@ -112,7 +112,17 @@ int main(int argc, char* args[])
         // anunciar vencedor no console (via SDL_Log)
         SDL_Log("Vencedor: %s", runners[winner].name);
 
-        SDL_Delay(3000); // tempo para ver a corrida antes de reiniciar
+        // Substituir SDL_Delay(3000) com um timer
+        Uint32 waitStart = SDL_GetTicks();
+        while (SDL_GetTicks() - waitStart < 3000 && running) {
+            SDL_Event tempEvent;
+            if (SDL_WaitEventTimeout(&tempEvent, 100)) {
+                if (tempEvent.type == SDL_WINDOWEVENT &&
+                    tempEvent.window.event == SDL_WINDOWEVENT_CLOSE) {
+                    running = 0;
+                }
+            }
+        }
     }
 
     /* FINALIZACAO */

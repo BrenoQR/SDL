@@ -1,9 +1,21 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
+int AUX_WaitEventTimeout(SDL_Event* ev, int timeout) {
+    Uint32 start = SDL_GetTicks();
+    
+    while (1) {
+        if (SDL_WaitEventTimeout(ev, timeout))
+            return 1;
+            
+        if ((SDL_GetTicks() - start) >= timeout)
+            return 0;
+    }
+}
+
 int main(int argc, char* args[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window* win = SDL_CreateWindow("Animacao com SDL_WaitEventTimeout",
+    SDL_Window* win = SDL_CreateWindow("Animacao Reescrita",
                                       SDL_WINDOWPOS_UNDEFINED,
                                       SDL_WINDOWPOS_UNDEFINED,
                                       200, 200, SDL_WINDOW_SHOWN);
@@ -20,7 +32,7 @@ int main(int argc, char* args[]) {
     SDL_Event e;
 
     while (running) {
-        if (SDL_WaitEventTimeout(&e, 10)) {
+        if (AUX_WaitEventTimeout(&e, 10)) {
             if (e.type == SDL_QUIT) {
                 running = 0;
             }

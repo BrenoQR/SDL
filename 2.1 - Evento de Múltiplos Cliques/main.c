@@ -103,7 +103,7 @@ void check_multiclick_timeout() {
         SDL_zero(user_event);
         user_event.type = SDL_USEREVENT;
         user_event.user.windowID = SDL_GetWindowID(g_window);
-        user_event.user.code = g_multi_click_state.count; // Nossa contagem de cliques
+        user_event.user.code = g_multi_click_state.count;
 
         SDL_PushEvent(&user_event);
 

@@ -6,10 +6,10 @@
 #include <stdbool.h>
 
 
-#define PARTITION_WIDTH 500      
-#define WINDOW_WIDTH 1500       
-#define WINDOW_HEIGHT 900       
-#define MAX_CIRCLES 100         // Numero maximo de circulos
+#define PARTITION_WIDTH 266      
+#define WINDOW_WIDTH 800        
+#define WINDOW_HEIGHT 600      
+#define MAX_CIRCLES 100
 #define GAME_DURATION 15000     // Duracao do jogo em milissegundos
 
 // Estrutura para representar um circulo
@@ -37,7 +37,8 @@ void generate_random_circle(Circle* circle) {
     circle->partition = rand() % 3;  // Escolhe uma das tres particoes
     circle->base_ticks = 180 + (rand() % 300);
     circle->remaining_ticks = circle->base_ticks;
-    circle->radius = rand() % 50 + 20;
+    // Adjust circle size for smaller window
+    circle->radius = rand() % 30 + 15; 
     
     // Posiciona o circulo dentro da particao escolhida
     circle->x = circle->radius + 
@@ -185,11 +186,11 @@ int main(int argc, char* argv[]) {
         game.tick_counter++;
         game.spawn_timer -= deltaTime;
 
-        // Gera novo círculo quando necessário
+        // Gera novo circulo quando necessario
         if (game.spawn_timer <= 0 && game.count < MAX_CIRCLES) {
             generate_random_circle(&game.circles[game.count]);
             game.count++;
-            game.spawn_timer = 0.5f + (rand() % 1000) / 1000.0f;  // 0.5-1.5 segundos
+            game.spawn_timer = 0.5f + (rand() % 1000) / 1000.0f;
             printf("Novo círculo gerado: x=%d, y=%d, r=%d, a=%d\n", 
                    game.circles[game.count-1].x,
                    game.circles[game.count-1].y,
@@ -222,7 +223,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Mostra pontuacao final
-    printf("\nTempo acabou! Pontuação final: %d\n", game.score);
+    printf("\nTempo acabou! Pontuacao final: %d\n", game.score);
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

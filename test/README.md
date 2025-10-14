@@ -1,5 +1,5 @@
 
-# Projeto Maestro
+# Projeto Maestro (Protótipo)
 
 ## Teste de Menu
 Cria uma janela com quatro botões clicáveis e gerencia o lançamento do jogo principal.

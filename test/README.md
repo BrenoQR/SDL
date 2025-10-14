@@ -4,7 +4,7 @@
 ## Teste de Menu
 Cria uma janela com quatro botões clicáveis e gerencia o lançamento do jogo principal.
 
-## Estrutura do Menu
+### Estrutura do Menu
 Quatro botões alinhados verticalmente:
 1. **Jogar** - Inicia o jogo principal
 2. **Opções** - Ainda não implementado
@@ -142,10 +142,10 @@ gcc main.c -o main -lSDL2 -lSDL2_gfx
 - Fecha automaticamente após X segundos
 
 
-## Estrutura de Arquivos
+## Estrutura de Arquivos (temporário)
 
 /home/SDL/test/
-├── main.c         # Jogo principal
-├── menu.c         # Interface do menu
-├── Roboto-Regular.ttf
-└── Executáveis compilados (main, menu)
+    - main.c         # Jogo principal
+    - menu.c         # Interface do menu
+    - Roboto-Regular.ttf
+    - Executáveis compilados
